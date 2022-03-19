@@ -75,6 +75,7 @@ namespace LargestFolderFinder
                     {
                         size = getSizeOfFolder(sd);
                     }
+                    
                     allFolders.Add(new folderAndSize(sd.FullName, size));
 
                     //now update the cache
@@ -112,7 +113,7 @@ namespace LargestFolderFinder
             {
                 openFolder(largest.folderPath);
                 //remove the items as we have picked it, and want to rescan it next time. 
-                cache.removeCacheData(largest.folderPath);
+                if (useCache)                {                    cache.removeCacheData(largest.folderPath);                }
             }
         }
         public static void pickChoice()
@@ -202,11 +203,18 @@ namespace LargestFolderFinder
 
         public static void openFolder(string folderPath)
         {
-            ProcessStartInfo startinfo = new ProcessStartInfo();
+            //ProcessStartInfo startinfo = new ProcessStartInfo();
 
-            startinfo = new ProcessStartInfo("explorer.exe", "\"" + folderPath + "\"");
+            //startinfo = new ProcessStartInfo("explorer.exe", "\"" + folderPath + "\"");
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+            {
+                FileName = folderPath,
+                UseShellExecute = true,
+                Verb = "open"
+            });
 
-            Process.Start(startinfo);
+
+            //Process.Start(startinfo);
         }
 
         public static void saveCache()
