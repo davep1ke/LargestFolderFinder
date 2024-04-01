@@ -29,8 +29,9 @@ namespace LargestFolderFinder
             cache_max = 10,
             cachefolder =11,
             cacheignore = 12,
-            addSingleFolder = 16
-
+            addSingleFolder = 16,
+            addFilteredFolderReg = 17,
+            addFilteredFolderDir = 18
         }
         private static pickModes PickMode = pickModes.single;
         private static parseModes ParseMode = parseModes.Default;
@@ -49,6 +50,7 @@ namespace LargestFolderFinder
                 commands.Add (s1);
             }
             string s = "";
+            string temporaryArg = ""; //for holding args for commands with 2 params
             
             if (args.Length > 0)
             {
@@ -74,19 +76,23 @@ namespace LargestFolderFinder
 
 
                                 case "-?":
+                                case "--?":
+                                case "-help":
+                                case "-h":
                                     Help helpwindow = new Help(
                                     
                                         "Usage: \n" +
-                                        "<dir>" + "\t\t" + "Search direct subdirectories of directory" + "\n" +
-                                        "-c" + "\t\t" + "Choose folder after search" + "\n" +
-                                        "-x <dir>" + "\t\t" + "Exclude directory" + "\n" +
-                                        "-nr" + "\t\t" + "Disable recursing directories" + "\n" +
-                                        "-l <filename>" + "\t" + "Load a set of commands from a file"  + "\n" +
-                                        "-f <foldername>" + "\t" + "Add a single folder to the list (not subdirectories)" + "\n" +
+                                        "<dir>" + "\t\t\t" + "Search direct subdirectories of directory" + "\n" +
+                                        "-c" + "\t\t\t" + "Choose folder after search" + "\n" +
+                                        "-x <dir>" + "\t\t\t" + "Exclude directory" + "\n" +
+                                        "-nr" + "\t\t\t" + "Disable recursing directories" + "\n" +
+                                        "-l <filename>" + "\t\t" + "Load a set of commands from a file"  + "\n" +
+                                        "-f <foldername>" + "\t\t" + "Add a single folder to the list (not subdirectories)" + "\n" +
+                                        "-r <foldername> <filter>" + "\t" + "Add subfolders of a folder where they meet a regex" + "\n" +
                                         "-cachestats" + "\t\t" + "Show cache / pick stats" + "\n" +
                                         "-cache <min> <max>" + "\t" + "Cache file access for min < x < max hours" + "\n" +
                                         "-cachefolder <directory>" + "\t" + "Folder where cache data should be written" + "\n" +
-                                        "-cacheignore <directory>" + "\t\t" + "Never cache this folder"
+                                        "-cacheignore <directory>" + "\t" + "Never cache this folder"
                                         );
                                     Application.Run(helpwindow);
                                     PickMode = pickModes.noPick;
@@ -103,6 +109,10 @@ namespace LargestFolderFinder
 
                                 case "-f":
                                     ParseMode = parseModes.addSingleFolder;
+                                    break;
+
+                                case "-r":
+                                    ParseMode = parseModes.addFilteredFolderDir;
                                     break;
 
                                 case "-cachestats":
@@ -145,8 +155,19 @@ namespace LargestFolderFinder
                             break;
 
                         case parseModes.addSingleFolder:
+                            ParseMode = parseModes.Default;
                             //load a single folder straght into the list to check.
                             FindLargestFolder.addDirectoryDirectly(s);
+                            break;
+
+                        case parseModes.addFilteredFolderDir:
+                            ParseMode = parseModes.addFilteredFolderReg;
+                            temporaryArg = s;
+                            break;
+
+                        case parseModes.addFilteredFolderReg:
+                            ParseMode = parseModes.Default;
+                            FindLargestFolder.addFilteredFolder(temporaryArg, s);
                             break;
 
                         case parseModes.cachefolder:

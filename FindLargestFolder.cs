@@ -5,15 +5,16 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace LargestFolderFinder
 {
     public static class FindLargestFolder
     {
-        public static List<DirectoryInfo> folderList = new List<DirectoryInfo>();
+        public static List<DirectoryInfo> folderList = new List<DirectoryInfo>(); //list of folders to process after all arguments are complete.
         public static List<DirectoryInfo> excludeList = new List<DirectoryInfo>();
 
-        public static List<folderAndSize> allFolders = new List<folderAndSize>();
+        public static List<folderAndSize> allFolders = new List<folderAndSize>(); //list of processed folders. Individual folders are added earlier. 
         public static bool recurse = true;
        
         //public static bool firstfileonly = false;
@@ -31,12 +32,7 @@ namespace LargestFolderFinder
      
         public static bool showChooser = false;
 
-        public static void addDirectoryDirectly(string folderPath)
-        {
-            DirectoryInfo d = new DirectoryInfo(folderPath);
-            long size = getSizeOfFolder(d);
-            allFolders.Add(new folderAndSize(d.FullName, size));
-        }
+
 
         public static void scanDirectories()
         {
@@ -146,7 +142,7 @@ namespace LargestFolderFinder
                             //recurse and all all subdirs
                             try
                             {
-                                totalSize = totalSize + getSizeOfFolder(subdir);
+                                totalSize += getSizeOfFolder(subdir);
                             }
                             catch (UnauthorizedAccessException)
                             {
@@ -172,10 +168,31 @@ namespace LargestFolderFinder
 
             return totalSize;
         }
+
         public static void addPath(String folderPath)
         {
             DirectoryInfo d = new DirectoryInfo(folderPath);
             folderList.Add(d);
+        }
+        public static void addDirectoryDirectly(string folderPath)
+        {
+            DirectoryInfo d = new DirectoryInfo(folderPath);
+            long size = getSizeOfFolder(d);
+            allFolders.Add(new folderAndSize(d.FullName, size));
+        }
+
+        public static void addFilteredFolder(string folderPath, string regex)
+        {
+            DirectoryInfo d = new DirectoryInfo(folderPath);
+            foreach (DirectoryInfo di in d.GetDirectories())
+            {
+                Regex r = new Regex(regex);
+                if (r.Match(di.Name) != null)
+                {
+                    long size = getSizeOfFolder(di);
+                    allFolders.Add(new folderAndSize(di.FullName, size));
+                }
+            }
         }
 
 
@@ -185,7 +202,6 @@ namespace LargestFolderFinder
             excludeList.Add(d);
         }
 
-       
 
         public static bool isDirectoryExcluded(string fullname)
         {
@@ -221,5 +237,7 @@ namespace LargestFolderFinder
         {
             if (useCache) { cache.saveCache(); }
         }
+
+
     }
 }
