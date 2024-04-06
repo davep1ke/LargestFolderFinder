@@ -187,7 +187,8 @@ namespace LargestFolderFinder
             foreach (DirectoryInfo di in d.GetDirectories())
             {
                 Regex r = new Regex(regex);
-                if (r.Match(di.Name) != null)
+                Match m = r.Match(di.Name);
+                if ( m.Success == true)
                 {
                     long size = getSizeOfFolder(di);
                     allFolders.Add(new folderAndSize(di.FullName, size));
