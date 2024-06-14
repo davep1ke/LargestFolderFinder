@@ -193,6 +193,10 @@ namespace LargestFolderFinder
                     long size = getSizeOfFolder(di);
                     allFolders.Add(new folderAndSize(di.FullName, size));
                 }
+                else
+                {
+                    5addFilteredFolder(di.FullName, regex);
+                }
             }
         }
 
