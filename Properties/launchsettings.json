@@ -1,0 +1,66 @@
+{
+  "profiles": {
+    "Debug": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)",
+      "commandLineArgs": "",
+      "environmentVariables": {
+        "DEBUG_PROFILE": "Debug"
+      }
+    },
+    "Debug eps": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)",
+      "commandLineArgs": "",
+      "environmentVariables": {
+        "DEBUG_PROFILE": "Debug eps"
+      }
+    },
+    "Debug Help": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)",
+      "commandLineArgs": "-help",
+      "environmentVariables": {
+        "DEBUG_PROFILE": "Debug Help"
+      }
+    },
+    "Debug Thread": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)",
+      "commandLineArgs": "",
+      "environmentVariables": {
+        "DEBUG_PROFILE": "Debug Thread"
+      }
+    },
+    "Debug Override": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)",
+      "commandLineArgs": "",
+      "environmentVariables": {
+        "DEBUG_PROFILE": "Debug Override"
+      }
+    },
+    "Debug choose": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)",
+      "commandLineArgs": "",
+      "environmentVariables": {
+        "DEBUG_PROFILE": "Debug choose"
+      }
+    },
+    "Debug file": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)",
+      "commandLineArgs": "",
+      "environmentVariables": {
+        "DEBUG_PROFILE": "Debug file"
+      }
+    },
+    "Debug FirstFileOnly": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)",
+      "commandLineArgs": "",
+      "environmentVariables": {
+        "DEBUG_PROFILE": "Debug FirstFileOnly"
+      }
+    },

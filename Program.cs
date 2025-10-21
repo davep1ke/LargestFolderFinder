@@ -89,6 +89,7 @@ namespace LargestFolderFinder
                                         "-l <filename>" + "\t\t" + "Load a set of commands from a file"  + "\n" +
                                         "-f <foldername>" + "\t\t" + "Add a single folder to the list (not subdirectories)" + "\n" +
                                         "-r <foldername> <filter>" + "\t" + "Add subfolders of a folder where they meet a regex" + "\n" +
+                                        "-s" + "\t\t\t" + "Switch to smallest folder mode" + "\n" +
                                         "-cachestats" + "\t\t" + "Show cache / pick stats" + "\n" +
                                         "-cache <min> <max>" + "\t" + "Cache file access for min < x < max hours" + "\n" +
                                         "-cachefolder <directory>" + "\t" + "Folder where cache data should be written" + "\n" +
@@ -113,6 +114,10 @@ namespace LargestFolderFinder
 
                                 case "-r":
                                     ParseMode = parseModes.addFilteredFolderDir;
+                                    break;
+
+                                case "-s":
+                                    FindLargestFolder.pickSmallestFolder = true;
                                     break;
 
                                 case "-cachestats":
@@ -205,7 +210,14 @@ namespace LargestFolderFinder
                         }
                         else
                         {
-                            FindLargestFolder.pickLargest();
+                            if (FindLargestFolder.pickSmallestFolder)
+                            {
+                                FindLargestFolder.pickSmallest();
+                            }
+                            else
+                            {
+                                FindLargestFolder.pickLargest();
+                            }
                         }
                         break;
 

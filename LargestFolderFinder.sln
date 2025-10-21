@@ -7,27 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LargestFolderFinder", "Larg
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug Cache|Any CPU = Debug Cache|Any CPU
-		Debug choose|Any CPU = Debug choose|Any CPU
-		Debug eps|Any CPU = Debug eps|Any CPU
-		Debug Help|Any CPU = Debug Help|Any CPU
-		Debug noargs|Any CPU = Debug noargs|Any CPU
-		Debug Regex|Any CPU = Debug Regex|Any CPU
+		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{77B33AF9-E5F8-4EAA-B15F-F6AA152F7CBE}.Debug Cache|Any CPU.ActiveCfg = Debug Cache|Any CPU
-		{77B33AF9-E5F8-4EAA-B15F-F6AA152F7CBE}.Debug Cache|Any CPU.Build.0 = Debug Cache|Any CPU
-		{77B33AF9-E5F8-4EAA-B15F-F6AA152F7CBE}.Debug choose|Any CPU.ActiveCfg = Debug choose|Any CPU
-		{77B33AF9-E5F8-4EAA-B15F-F6AA152F7CBE}.Debug choose|Any CPU.Build.0 = Debug choose|Any CPU
-		{77B33AF9-E5F8-4EAA-B15F-F6AA152F7CBE}.Debug eps|Any CPU.ActiveCfg = Debug eps|Any CPU
-		{77B33AF9-E5F8-4EAA-B15F-F6AA152F7CBE}.Debug eps|Any CPU.Build.0 = Debug eps|Any CPU
-		{77B33AF9-E5F8-4EAA-B15F-F6AA152F7CBE}.Debug Help|Any CPU.ActiveCfg = Debug Help|Any CPU
-		{77B33AF9-E5F8-4EAA-B15F-F6AA152F7CBE}.Debug Help|Any CPU.Build.0 = Debug Help|Any CPU
-		{77B33AF9-E5F8-4EAA-B15F-F6AA152F7CBE}.Debug noargs|Any CPU.ActiveCfg = Debug|Any CPU
-		{77B33AF9-E5F8-4EAA-B15F-F6AA152F7CBE}.Debug noargs|Any CPU.Build.0 = Debug|Any CPU
-		{77B33AF9-E5F8-4EAA-B15F-F6AA152F7CBE}.Debug Regex|Any CPU.ActiveCfg = Debug Regex|Any CPU
-		{77B33AF9-E5F8-4EAA-B15F-F6AA152F7CBE}.Debug Regex|Any CPU.Build.0 = Debug Regex|Any CPU
+		{77B33AF9-E5F8-4EAA-B15F-F6AA152F7CBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77B33AF9-E5F8-4EAA-B15F-F6AA152F7CBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77B33AF9-E5F8-4EAA-B15F-F6AA152F7CBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77B33AF9-E5F8-4EAA-B15F-F6AA152F7CBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

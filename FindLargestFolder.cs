@@ -32,7 +32,7 @@ namespace LargestFolderFinder
      
         public static bool showChooser = false;
 
-
+        public static bool pickSmallestFolder = false;
 
         public static void scanDirectories()
         {
@@ -94,7 +94,6 @@ namespace LargestFolderFinder
         }
         public static void pickLargest()
         {
-
             folderAndSize largest = null;
             foreach (folderAndSize f in allFolders)
             {
@@ -112,6 +111,30 @@ namespace LargestFolderFinder
                 if (useCache)                {                    cache.removeCacheData(largest.folderPath);                }
             }
         }
+
+        public static void pickSmallest()
+        {
+            folderAndSize smallest = null;
+            foreach (folderAndSize f in allFolders)
+            {
+                if (smallest == null || f.size < smallest.size)
+                {
+                    smallest = f;
+                }
+            }
+
+            //pick smallest folder from our list
+            if (smallest != null)
+            {
+                openFolder(smallest.folderPath);
+                //remove the items as we have picked it, and want to rescan it next time. 
+                if (useCache) { cache.removeCacheData(smallest.folderPath); }
+            }
+        }
+
+
+
+
         public static void pickChoice()
         {
             Chooser c = new Chooser();
@@ -195,7 +218,7 @@ namespace LargestFolderFinder
                 }
                 else
                 {
-                    5addFilteredFolder(di.FullName, regex);
+                    addFilteredFolder(di.FullName, regex);
                 }
             }
         }
